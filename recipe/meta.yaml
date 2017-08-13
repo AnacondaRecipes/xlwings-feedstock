@@ -19,7 +19,7 @@ build:
   skip: True  # [linux]
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
   run:
