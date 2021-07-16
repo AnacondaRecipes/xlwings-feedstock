@@ -26,7 +26,7 @@ requirements:
   run:
     - python
     - pywin32  # [win]
-    - psutil >=2.0  # [osx]
+    - psutil >=2.0.0  # [osx]
     - appscript >=1.0.1  # [osx]
 
 test:
