@@ -30,7 +30,10 @@ requirements:
     - appscript >=1.0.1  # [osx]
 
 test:
+  requires:
+    - pip
   commands:
+    - pip check
     - xlwings -h
   imports:
     - xlwings
