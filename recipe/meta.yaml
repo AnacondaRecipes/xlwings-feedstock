@@ -48,7 +48,7 @@ about:
   summary: Interact with Excel from Python and vice versa
   description: |
     xlwings is a BSD-licensed Python library that makes it easy to call Python from Excel and vice versa.
-  doc_url: https://docs.xlwings.org/en/stable/index.html
+  doc_url: https://docs.xlwings.org/en/stable/
   dev_url: https://github.com/ZoomerAnalytics/xlwings
   doc_source_url: https://github.com/ZoomerAnalytics/xlwings/blob/master/docs/quickstart.rst
 
