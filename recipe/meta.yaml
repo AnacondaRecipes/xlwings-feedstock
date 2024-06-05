@@ -21,8 +21,7 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
-    - wheel
+    - maturin >=1,<2
   run:
     - python
     - pywin32 >=224 # [win]
