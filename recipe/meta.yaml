@@ -12,10 +12,10 @@ source:
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
     - xlwings = xlwings.cli:main
-  skip: true  # [linux or py<37]
+  skip: true  # [linux or py<38]
 
 requirements:
   host:
