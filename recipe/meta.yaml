@@ -30,12 +30,17 @@ requirements:
 test:
   requires:
     - pip
+    - werkzeug
+    - flask
   commands:
     - pip check
     - xlwings -h
   imports:
     - xlwings
     - xlwings.conversion
+    - xlwings.ext
+    - xlwings.quickstart_fastapi
+    - xlwings.rest
 
 about:
   home: https://www.xlwings.org/
