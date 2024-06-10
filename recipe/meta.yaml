@@ -1,29 +1,26 @@
 {% set name = "xlwings" %}
-{% set version = "0.29.1" %}
-{% set sha256 = "88fe1050990ebe838302b4b6aafeb6e5c9620a329a50744e344288a7012360c3" %}
+{% set version = "0.31.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: de9ccbb35aa90f7e31264a53e7ee8ad2ccce771f055cef1463faa3683880a873
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
     - xlwings = xlwings.cli:main
-  skip: true  # [linux or py<37]
+  skip: true  # [linux or py<38]
 
 requirements:
   host:
     - python
     - pip
-    - setuptools
-    - wheel
+    - maturin 1.3.0
   run:
     - python
     - pywin32 >=224 # [win]
@@ -33,12 +30,17 @@ requirements:
 test:
   requires:
     - pip
+    - werkzeug
+    - flask
   commands:
     - pip check
     - xlwings -h
   imports:
     - xlwings
     - xlwings.conversion
+    - xlwings.ext
+    - xlwings.quickstart_fastapi
+    - xlwings.rest
 
 about:
   home: https://www.xlwings.org/
@@ -48,10 +50,11 @@ about:
   summary: Interact with Excel from Python and vice versa
   description: |
     xlwings is a BSD-licensed Python library that makes it easy to call Python from Excel and vice versa.
-  doc_url: https://docs.xlwings.org/en/stable/
+  doc_url: https://docs.xlwings.org/
   dev_url: https://github.com/xlwings/xlwings
-  doc_source_url: https://github.com/ZoomerAnalytics/xlwings/blob/master/docs/quickstart.rst
 
 extra:
+  skip-lints:
+    - missing_wheel
   recipe-maintainers:
     - fzumstein
