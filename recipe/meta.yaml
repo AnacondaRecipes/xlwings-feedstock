@@ -60,7 +60,5 @@ about:
   dev_url: https://github.com/xlwings/xlwings
 
 extra:
-  skip-lints:
-    - missing_wheel
   recipe-maintainers:
     - fzumstein
