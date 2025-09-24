@@ -36,6 +36,8 @@ requirements:
 test:
   requires:
     - pip
+    - werkzeug
+    - flask
   commands:
     - pip check
     - xlwings -h
