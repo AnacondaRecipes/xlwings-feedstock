@@ -20,7 +20,6 @@ build:
   # From the description: Works on Windows, macOS, and Excel on the web (incl. the free version of Excel)
   skip: true  # [linux]
   
-
 requirements:
   build:
     - {{ stdlib("c") }}
