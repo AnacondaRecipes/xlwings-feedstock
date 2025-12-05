@@ -1,27 +1,29 @@
 {% set name = "xlwings" %}
-{% set version = "0.33.15" %}
+{% set version = "0.33.16" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c3fdeda516d87cfda0316daf3b97b49e31bde577007cefb6b6a245850546daa6
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 3ed1b93199d2cb4509ad9a3d4bab38ce483a8eaa39d38ffd034b7edac3241b51
 
 build:
   number: 0
+  script_env:
+    - BUILD_RUST=1
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
     - xlwings = xlwings.cli:main
-  skip: true  # [linux or py<39]
-  script_env:
-    - BUILD_RUST=1
-
+  skip: true  # [py<39]
+  # From the description: Works on Windows, macOS, and Excel on the web (incl. the free version of Excel)
+  skip: true  # [linux]
+  
 requirements:
   build:
-    - {{ compiler("c") }}
     - {{ stdlib("c") }}
+    - {{ compiler("c") }}
     - {{ compiler("rust") }}
   host:
     - python
@@ -48,7 +50,7 @@ test:
     - xlwings.rest
 
 about:
-  home: https://www.xlwings.org/
+  home: https://www.xlwings.org
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
@@ -56,7 +58,7 @@ about:
   description: |
     xlwings is a BSD-licensed Python library that makes it easy to call Python from Excel and vice versa.
     Note: To use xlwings PRO functionality, you need to use a license key. See https://docs.xlwings.org/en/latest/pro/license_key.html
-  doc_url: https://docs.xlwings.org/
+  doc_url: https://docs.xlwings.org
   dev_url: https://github.com/xlwings/xlwings
 
 extra:
