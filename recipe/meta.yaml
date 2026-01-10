@@ -29,11 +29,13 @@ requirements:
     - python
     - pip
     - maturin >=1,<2
+    - setuptools_rust
   run:
     - python
-    - pywin32 >=224 # [win]
-    - psutil >=2.0.0 # [osx]
-    - appscript >=1.0.1 # [osx]
+    - pywin32 >=224  # [win]
+    - psutil >=2.0.0  # [osx]
+    - appscript >=1.0.1  # [osx]
+    - pywin32-on-windows >=224  # [win]
 
 test:
   requires:
