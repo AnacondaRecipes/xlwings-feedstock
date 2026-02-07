@@ -22,7 +22,8 @@ build:
 
 requirements:
   build:
-    - {{ stdlib("c") }}
+    # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.
+    - {{ stdlib("c") }}  # [not win]
     - {{ compiler("c") }}
     - {{ compiler("rust") }}
   host:
@@ -30,7 +31,7 @@ requirements:
     - pip
     - maturin >=1,<2
     # https://github.com/xlwings/xlwings/blob/0.33.20/setup.py#L62-L63
-    - setuptools_rust
+    - setuptools-rust
   run:
     - python
     - pywin32 >=224  # [win]
