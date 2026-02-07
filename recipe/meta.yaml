@@ -29,15 +29,20 @@ requirements:
     - python
     - pip
     - maturin >=1,<2
+    # https://github.com/xlwings/xlwings/blob/0.33.20/setup.py#L62-L63
     - setuptools_rust
   run:
     - python
     - pywin32 >=224  # [win]
     - psutil >=2.0.0  # [osx]
     - appscript >=1.0.1  # [osx]
-    - pywin32-on-windows >=224  # [win]
 
 test:
+  imports:
+    - xlwings
+    - xlwings.conversion
+    - xlwings.ext
+    - xlwings.rest
   requires:
     - pip
     - werkzeug
@@ -45,11 +50,7 @@ test:
   commands:
     - pip check
     - xlwings -h
-  imports:
-    - xlwings
-    - xlwings.conversion
-    - xlwings.ext
-    - xlwings.rest
+    # Upstream tests require admin permission and open excel
 
 about:
   home: https://www.xlwings.org
