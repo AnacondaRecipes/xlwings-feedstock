@@ -1,13 +1,13 @@
 {% set name = "xlwings" %}
-{% set version = "0.36.0" %}
+{% set version = "0.36.13" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 08fbd1962ca4949acb1c4e8fe67645cc93235c930a824c05e2669633d0d88b6d
+  sha256: 94da1d298664b88e9c671d1d92a946c756a17422dfa43730a1e6f42e410ae74c
 
 build:
   number: 0
@@ -16,21 +16,19 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
     - xlwings = xlwings.cli:main
-  skip: true  # [py<39]
   # From the description: Works on Windows, macOS, and Excel on the web (incl. the free version of Excel)
-  skip: true  # [linux]
+  skip: true  # [py<39 or linux]
 
 requirements:
   build:
-    # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.
-    - {{ stdlib("c") }}  # [not win]
+    - {{ stdlib("c") }}
     - {{ compiler("c") }}
     - {{ compiler("rust") }}
   host:
     - python
     - pip
     - maturin >=1,<2
-    # https://github.com/xlwings/xlwings/blob/0.33.20/setup.py#L62-L63
+    # https://github.com/xlwings/xlwings/blob/0.36.13/setup.py#L62-L63
     - setuptools-rust
   run:
     - python
