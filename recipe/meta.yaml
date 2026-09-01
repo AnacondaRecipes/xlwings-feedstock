@@ -30,11 +30,13 @@ requirements:
     - maturin >=1,<2
     # https://github.com/xlwings/xlwings/blob/0.36.13/setup.py#L62-L63
     - setuptools-rust
+    - setuptools_rust
   run:
     - python
     - pywin32 >=224  # [win]
     - psutil >=2.0.0  # [osx]
     - appscript >=1.0.1  # [osx]
+    - pywin32-on-windows >=224  # [win]
 
 test:
   imports:
