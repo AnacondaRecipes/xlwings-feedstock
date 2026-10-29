@@ -17,7 +17,8 @@ build:
   entry_points:
     - xlwings = xlwings.cli:main
   # From the description: Works on Windows, macOS, and Excel on the web (incl. the free version of Excel)
-  skip: true  # [py<311 or linux]
+  # pywin32 has no py3.15 build on pkgs/main yet, so the win py3.15 variant cannot be installed
+  skip: true  # [py<311 or linux or (win and py>314)]
 
 requirements:
   build:
@@ -41,11 +42,12 @@ test:
     - xlwings
     - xlwings.conversion
     - xlwings.ext
-    - xlwings.rest
+    # Flask (needed by xlwings.rest) has no py3.15 build on pkgs/main yet
+    - xlwings.rest  # [py<=314]
   requires:
     - pip
-    - werkzeug
-    - flask
+    - werkzeug  # [py<=314]
+    - flask  # [py<=314]
   commands:
     - pip check
     - xlwings -h
