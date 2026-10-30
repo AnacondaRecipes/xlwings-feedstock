@@ -1,5 +1,5 @@
 {% set name = "xlwings" %}
-{% set version = "0.36.13" %}
+{% set version = "0.37.8" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 94da1d298664b88e9c671d1d92a946c756a17422dfa43730a1e6f42e410ae74c
+  sha256: ff23f1e62bdeb8256b56e11d54fca7c1efacfc227acb92d41b7d06d7f65a7e94
 
 build:
   number: 0
@@ -17,7 +17,7 @@ build:
   entry_points:
     - xlwings = xlwings.cli:main
   # From the description: Works on Windows, macOS, and Excel on the web (incl. the free version of Excel)
-  skip: true  # [py<39 or linux]
+  skip: true  # [py<311 or linux]
 
 requirements:
   build:
@@ -28,7 +28,7 @@ requirements:
     - python
     - pip
     - maturin >=1,<2
-    # https://github.com/xlwings/xlwings/blob/0.36.13/setup.py#L62-L63
+    # https://github.com/xlwings/xlwings/blob/0.37.8/setup.py#L62-L63
     - setuptools-rust
   run:
     - python
@@ -49,7 +49,7 @@ test:
   commands:
     - pip check
     - xlwings -h
-    # Upstream tests require admin permission and open excel
+    # Upstream tests drive a live Excel instance (Windows/macOS) and need admin rights; not runnable headless in CI
 
 about:
   home: https://www.xlwings.org
